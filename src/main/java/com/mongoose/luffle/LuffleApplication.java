@@ -8,6 +8,7 @@ public class LuffleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LuffleApplication.class, args);
+		
 	}
 
 }
