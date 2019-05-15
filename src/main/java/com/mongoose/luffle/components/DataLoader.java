@@ -20,6 +20,15 @@ public class DataLoader implements ApplicationRunner{
 	public void run(ApplicationArguments args) {
 		Restaurant panko = new Restaurant("Panko", "Japanese", "123 Bothwell Street");
 		restaurantRepository.save(panko);
+		Restaurant marthas = new Restaurant("Marthas", "Healthy", "99 St Vincent Street");
+		restaurantRepository.save(marthas);
+		Restaurant philpotts = new Restaurant("Philpotts", "Salads", "33 Bothwell Street");
+		restaurantRepository.save(philpotts);
+		Restaurant pret = new Restaurant("Pret", "Coffee", "13 Bothwell Street");
+		restaurantRepository.save(pret);
+		Restaurant tacobell = new Restaurant("TacoBell", "Mexican", "25 Ariba Street");
+		restaurantRepository.save(tacobell);
+		
 		
 	}
 
