@@ -38,7 +38,7 @@ public class DataLoader implements ApplicationRunner{
 		
 //		Review david = new Review("David", 5, "Grrrrreat Java");
 //		reviewRepository.save(david);
-//		
+		
 //		pret.addReview(david);
 		
 	}

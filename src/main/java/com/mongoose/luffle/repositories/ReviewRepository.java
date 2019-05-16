@@ -7,5 +7,4 @@ import com.mongoose.luffle.models.Review;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
-
 }

@@ -38,7 +38,6 @@ public class Review implements Serializable{
 	//@JsonIgnoreProperties("reviews")
     //@ManyToOne
     //@JoinColumn(name = "restaurant_id", nullable = false)
-    
     //private Restaurant restaurant;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
