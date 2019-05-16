@@ -18,7 +18,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "reviews")
+@Table(name = "review")
 public class Review implements Serializable{
 	
 	@Id
@@ -34,49 +34,37 @@ public class Review implements Serializable{
 	
 	@Column(name = "review")
 	private String review;
-
-	
-	//@JsonIgnoreProperties("reviews")
-    //@ManyToOne
-    //@JoinColumn(name = "restaurant_id", nullable = false)
-    //private Restaurant restaurant;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Restaurant restaurant;
+	
+	public Review() {
+	}
 
 	public Review(Restaurant restaurant, String reviewerName, Integer stars, String review) {
 		this.restaurant = restaurant;
 		this.reviewerName = reviewerName;
 		this.stars = stars;
-		this.review = review;
-		
+		this.review = review;	
 	}
-
 	
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
-
-
-
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
-
-
-
-	public Review() {
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 	public String getReviewerName() {
@@ -102,6 +90,4 @@ public class Review implements Serializable{
 	public void setReview(String review) {
 		this.review = review;
 	}
-	
-
 }

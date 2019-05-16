@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "restaurants")
+@Table(name = "restaurant")
 public class Restaurant implements Serializable {
 
 @Id
@@ -26,11 +26,14 @@ private long id;
 @Column(name = "name")
 private String name;
 
-@Column(name = "genre")
-private String genre;
+@Column(name = "city")
+private String city;
 
 @Column(name = "address")
 private String address;
+
+@Column(name = "genre")
+private String genre;
 
 //@Cascade(org.hibernate.annotations.CascadeType.DELETE)
 //@OneToMany(mappedBy = "restaurants", fetch = FetchType.LAZY)
@@ -41,15 +44,15 @@ fetch = FetchType.LAZY,
 mappedBy = "restaurant")
 private List<Review> reviews = new ArrayList<>();
 
-public Restaurant(String name, String genre, String address) {
-	this.name = name;
-	this.genre = genre;
-	this.address = address;
-	this.reviews = new ArrayList<Review>();
-	
+public Restaurant() {
 }
 
-public Restaurant() {
+public Restaurant(String name,String city, String address, String genre) {
+	this.name = name;
+	this.city = city;
+	this.address = address;
+	this.genre = genre;
+	this.reviews = new ArrayList<Review>();
 }
 
 public String getName() {
@@ -79,6 +82,4 @@ public void setAddress(String address) {
 public void addReview(Review review) {
 	this.reviews.add(review);
 }
-
-
 }

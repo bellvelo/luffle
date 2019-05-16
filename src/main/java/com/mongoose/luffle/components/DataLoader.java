@@ -22,23 +22,27 @@ public class DataLoader implements ApplicationRunner{
 	}
 	
 	public void run(ApplicationArguments args) {
-		Restaurant panko = new Restaurant("Panko", "Japanese", "123 Bothwell Street");
+		Restaurant panko = new Restaurant("Panko","Glasgow", "123 Bothwell Street", "Japanese");
 		restaurantRepository.save(panko);
 			
-		Restaurant marthas = new Restaurant("Marthas", "Healthy", "99 St Vincent Street");
+		Restaurant marthas = new Restaurant("Marthas","Glasgow", "99 St Vincent Street", "Healthy");
 		restaurantRepository.save(marthas);
 		
-		Restaurant philpotts = new Restaurant("Philpotts", "Salads", "33 Bothwell Street");
+		Restaurant philpotts = new Restaurant("Philpotts","Glasgow", "33 Bothwell Street", "Salads");
 		restaurantRepository.save(philpotts);
 		
-		Restaurant tacobell = new Restaurant("TacoBell", "Mexican", "25 Ariba Street");
+		Restaurant tacobell = new Restaurant("TacoBell","Edinburgh", "25 Ariba Street", "Mexican");
 		restaurantRepository.save(tacobell);
 		
-		Restaurant pret = new Restaurant("Pret", "Coffee", "13 Bothwell Street");
+		Restaurant pret = new Restaurant("Pret","Glasgow", "13 Bothwell Street", "Coffee");
 		restaurantRepository.save(pret);
 		
 		Review david = new Review(panko, "David", 5, "Grrrrreat Java");
 		reviewRepository.save(david);
+		Review david2 = new Review(panko, "David2", 1, "Grrrrreat Java");
+		reviewRepository.save(david2);
+		Review david3 = new Review(panko, "David3", 2, "Grrrrreat Java");
+		reviewRepository.save(david3);
 		
 //		pret.addReview(david);
 		
