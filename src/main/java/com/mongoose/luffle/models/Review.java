@@ -34,6 +34,7 @@ public class Review implements Serializable{
 	
 	@Column(name = "review")
 	private String review;
+
 	
 	//@JsonIgnoreProperties("reviews")
     //@ManyToOne
@@ -46,12 +47,26 @@ public class Review implements Serializable{
     @JsonIgnore
     private Restaurant restaurant;
 
-	public Review(String reviewerName, Integer stars, String review) {
+	public Review(Restaurant restaurant, String reviewerName, Integer stars, String review) {
+		this.restaurant = restaurant;
 		this.reviewerName = reviewerName;
 		this.stars = stars;
 		this.review = review;
 		
 	}
+
+	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+
 
 	public Review() {
 	}

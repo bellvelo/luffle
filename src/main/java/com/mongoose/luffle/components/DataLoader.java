@@ -15,6 +15,7 @@ public class DataLoader implements ApplicationRunner{
 	
 	@Autowired
 	RestaurantRepository restaurantRepository;
+	@Autowired
 	ReviewRepository reviewRepository;
 	
 	public DataLoader() {
@@ -36,8 +37,8 @@ public class DataLoader implements ApplicationRunner{
 		Restaurant pret = new Restaurant("Pret", "Coffee", "13 Bothwell Street");
 		restaurantRepository.save(pret);
 		
-//		Review david = new Review("David", 5, "Grrrrreat Java");
-//		reviewRepository.save(david);
+		Review david = new Review(panko, "David", 5, "Grrrrreat Java");
+		reviewRepository.save(david);
 		
 //		pret.addReview(david);
 		

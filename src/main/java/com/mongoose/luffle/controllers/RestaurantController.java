@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mongoose.luffle.models.Restaurant;
 import com.mongoose.luffle.repositories.RestaurantRepository;
 
-
-
 @RestController
 @RequestMapping(value = "/restaurants")
 public class RestaurantController {
@@ -30,6 +28,4 @@ public class RestaurantController {
 	public Optional<Restaurant> getRestaurant(@PathVariable Long id) {
 		return restaurantRepository.findById(id);
 	}
-	
-
 }
