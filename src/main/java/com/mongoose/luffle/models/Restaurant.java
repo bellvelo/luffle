@@ -82,4 +82,14 @@ public void setAddress(String address) {
 public void addReview(Review review) {
 	this.reviews.add(review);
 }
+
+public String getCity() {
+	return city;
+}
+
+public void setCity(String city) {
+	this.city = city;
+}
+
+
 }
