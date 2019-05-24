@@ -4,6 +4,18 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+bootJar {
+    baseName = 'gs-accessing-data-rest'
+    //
+    baseName = 'gs-rest-hateoas'
+    //
+    version = '0.1.0'
+}
 
 group = 'com.mongoose'
 version = '0.0.1-SNAPSHOT'
@@ -16,10 +28,21 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	//implementation 'org.springframework.boot:spring-boot-starter-rest'
+	
+	//runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile("org.springframework.boot:spring-boot-starter-web")
+	compile("org.springframework.boot:spring-boot-starter-data-rest")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    
 	implementation 'org.mariadb.jdbc:mariadb-java-client:2.1.2'
-	
+	//
+	compile("org.springframework.boot:spring-boot-starter-hateoas")
+	compile("org.springframework.data:spring-data-rest-webmvc:3.1.8.RELEASE")
+    testCompile("com.jayway.jsonpath:json-path")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+	//
 	
 }
+

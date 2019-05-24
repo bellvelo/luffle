@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,13 +13,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@Table(name = "restaurant")
-public class Restaurant implements Serializable {
+@Table(name = "restaurants")
+public class Restaurant {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "id")
 private long id;
 
 @Column(name = "name")
@@ -35,17 +37,11 @@ private String address;
 @Column(name = "genre")
 private String genre;
 
-//@Cascade(org.hibernate.annotations.CascadeType.DELETE)
-//@OneToMany(mappedBy = "restaurants", fetch = FetchType.LAZY)
-//private List<Review> reviews;
+@JsonIgnoreProperties("restaurants")
+@Cascade(org.hibernate.annotations.CascadeType.DELETE)
+@OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+private List<Review> reviews;
 
-@OneToMany(cascade = CascadeType.ALL,
-fetch = FetchType.LAZY,
-mappedBy = "restaurant")
-private List<Review> reviews = new ArrayList<>();
-
-public Restaurant() {
-}
 
 public Restaurant(String name,String city, String address, String genre) {
 	this.name = name;
@@ -53,6 +49,9 @@ public Restaurant(String name,String city, String address, String genre) {
 	this.address = address;
 	this.genre = genre;
 	this.reviews = new ArrayList<Review>();
+}
+
+public Restaurant() {
 }
 
 public String getName() {
@@ -79,10 +78,6 @@ public void setAddress(String address) {
 	this.address = address;
 }
 
-public void addReview(Review review) {
-	this.reviews.add(review);
-}
-
 public String getCity() {
 	return city;
 }
@@ -90,6 +85,19 @@ public String getCity() {
 public void setCity(String city) {
 	this.city = city;
 }
+
+public void addReview(Review review) {
+	this.reviews.add(review);
+}
+
+public List<Review> getReviews() {
+	return reviews;
+}
+
+public void setReviews(List<Review> reviews) {
+	this.reviews = reviews;
+}
+
 
 
 }

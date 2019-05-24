@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,19 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "review")
+@Table(name = "reviews")
 public class Review implements Serializable{
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
 	
 	@Column(name = "name")
 	private String reviewerName;
@@ -35,20 +26,29 @@ public class Review implements Serializable{
 	@Column(name = "review")
 	private String review;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "restaurant_id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonIgnore
+//    private Restaurant restaurant;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@JsonIgnoreProperties("reviews")
+	@ManyToOne
     @JoinColumn(name = "restaurant_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Restaurant restaurant;
 	
-	public Review() {
-	}
-
-	public Review(Restaurant restaurant, String reviewerName, Integer stars, String review) {
-		this.restaurant = restaurant;
+	public Review(String reviewerName, Integer stars, String review, Restaurant restaurant) {
 		this.reviewerName = reviewerName;
 		this.stars = stars;
 		this.review = review;	
+		this.restaurant = restaurant;
+	}
+	
+	public Review() {
 	}
 	
 	public Long getId() {
@@ -59,13 +59,6 @@ public class Review implements Serializable{
 		this.id = id;
 	}
 	
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
-
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
 
 	public String getReviewerName() {
 		return reviewerName;
@@ -90,4 +83,14 @@ public class Review implements Serializable{
 	public void setReview(String review) {
 		this.review = review;
 	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+	
+	
 }

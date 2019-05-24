@@ -24,6 +24,14 @@ public class DataLoader implements ApplicationRunner{
 	public void run(ApplicationArguments args) {
 		Restaurant panko = new Restaurant("Panko","Glasgow", "123 Bothwell Street", "Japanese");
 		restaurantRepository.save(panko);
+		
+		Review david = new Review("David", 5, "Katsuuu", panko);
+		reviewRepository.save(david);
+		
+		panko.addReview(david);
+		restaurantRepository.save(panko);
+		
+		////
 			
 		Restaurant marthas = new Restaurant("Marthas","Glasgow", "99 St Vincent Street", "Healthy");
 		restaurantRepository.save(marthas);
@@ -34,18 +42,35 @@ public class DataLoader implements ApplicationRunner{
 		Restaurant tacobell = new Restaurant("TacoBell","Edinburgh", "25 Ariba Street", "Mexican");
 		restaurantRepository.save(tacobell);
 		
-		Restaurant pret = new Restaurant("Pret","Glasgow", "13 Bothwell Street", "Coffee");
+		Restaurant pret = new Restaurant("Pret a Manger","Glasgow", "13 Bothwell Street", "Coffee");
 		restaurantRepository.save(pret);
 		
-		Review david = new Review(panko, "David", 5, "Grrrrreat Java");
-		reviewRepository.save(david);
-		Review david2 = new Review(panko, "David2", 1, "Grrrrreat Java");
-		reviewRepository.save(david2);
-		Review david3 = new Review(panko, "David3", 2, "Grrrrreat Java");
-		reviewRepository.save(david3);
 		
-//		pret.addReview(david);
 		
+		Review farheen = new Review("Farheen", 4, "Nice and Healthy", marthas);
+		reviewRepository.save(farheen);
+		
+		Review ali = new Review("Ali", 4, "Grrrrreat Java", pret);
+		reviewRepository.save(ali);
+		
+		Review bob = new Review("Bob", 4, "Panko4Life!!", panko);
+		reviewRepository.save(bob);
+		
+		Review jim = new Review("Jim", 4, "Give me coffee", pret);
+		reviewRepository.save(jim);
+		
+	
+		marthas.addReview(farheen);
+		restaurantRepository.save(marthas);
+		
+		pret.addReview(ali);
+		restaurantRepository.save(pret);
+		
+		panko.addReview(bob);
+		restaurantRepository.save(panko);
+		
+		pret.addReview(jim);
+		restaurantRepository.save(pret);
 	}
 
 }
